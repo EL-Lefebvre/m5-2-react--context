@@ -10,6 +10,7 @@ export const GameProvider = ({ children }) => {
       cursor: 0,
       grandma: 0,
       farm: 0,
+      
     }
   );
 

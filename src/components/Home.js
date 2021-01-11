@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import useAppTitle from "./useAppTitle";
+import {GameContext} from "./GameContext";
 
 const Home = () => {
+  const {numCookies, setNumCookies, useAppTitle} = useContext(GameContext);
   return (
     <Wrapper>
       <Title>Cookie game</Title>
