@@ -3,6 +3,7 @@ import { GameContext } from "./GameContext";
 import usePersistedState from "./usePersistedState";
 import useAppTitle from "./useAppTitle";
 import { items } from "./Data";
+import useTimeDifference from "./useTimeDifference";
 import calculateCookiesPerSecond from "./CalculateCookiesPerSecond";
 
 export const GameProvider = ({ children }) => {
@@ -22,7 +23,10 @@ export const GameProvider = ({ children }) => {
 
   useAppTitle(numCookies, `Cookie Clicker Workshop`);
   const numOfGeneratedCookies = calculateCookiesPerSecond(purchasedItems);
+const NumGenCookiesWhileAway = () => {
+    numOfGeneratedCookies
 
+}
 console.log(numOfGeneratedCookies);
 
   return (

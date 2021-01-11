@@ -8,7 +8,6 @@ import Item from "./Item";
 
 const Game = () => {
   const {
-    calculateCookiesPerSecond,
     numCookies,
     setNumCookies,
     numOfGeneratedCookies,
