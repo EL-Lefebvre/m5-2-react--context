@@ -1,33 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { GameContext } from "./GameContext";
-import usePersistedState from "./usePersistedState";
+import usePersistedState from "../hooks/usePersistedState";
 import useAppTitle from "./useAppTitle";
 import { items } from "./Data";
-import useTimeDifference from "./useTimeDifference";
 import calculateCookiesPerSecond from "./CalculateCookiesPerSecond";
 
 export const GameProvider = ({ children }) => {
-  const [numCookies, setNumCookies] = useState(
-    usePersistedState(1000, "CookieCount")
-  );
-
-  useEffect(() => {
-    localStorage.setItem("CookieCount", numCookies);
-  }, [numCookies]);
-
-  const [purchasedItems, setPurchasedItems] = useState({
+  const [numCookies, setNumCookies] = usePersistedState(1000, "cookieClick");
+  const [megaClick, setMegaClick] = useState(false);
+  const [cookieToggle, setCookieToggle] = useState(false);
+  const [cursorPrice, setCursorPrice] = useState({ cost: 1000, value: 5 });
+  const [purchasedItems, setPurchasedItems] = usePersistedState({
     cursor: 0,
     grandma: 0,
     farm: 0,
-  });
+  }, "purchasedItem");
 
   useAppTitle(numCookies, `Cookie Clicker Workshop`);
   const numOfGeneratedCookies = calculateCookiesPerSecond(purchasedItems);
-const NumGenCookiesWhileAway = () => {
-    numOfGeneratedCookies
-
-}
-console.log(numOfGeneratedCookies);
 
   return (
     <GameContext.Provider
@@ -38,6 +28,12 @@ console.log(numOfGeneratedCookies);
         numOfGeneratedCookies,
         purchasedItems,
         setPurchasedItems,
+        megaClick,
+        setMegaClick,
+        cookieToggle,
+        setCookieToggle,
+        cursorPrice,
+        setCursorPrice,
         items,
         useAppTitle,
       }}

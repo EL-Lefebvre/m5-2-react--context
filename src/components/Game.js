@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GameContext } from "./GameContext";
-
+import Cursor from "./Cursor";
 import cookieSrc from "../cookie.svg";
 import Item from "./Item";
 
@@ -12,12 +12,22 @@ const Game = () => {
     setNumCookies,
     numOfGeneratedCookies,
     items,
+    megaClick,
+    setCookieToggle,
+    cursorPrice,
     purchasedItems,
     setPurchasedItems,
   } = useContext(GameContext);
+  
 
   const incrementCookies = () => {
-    setNumCookies((c) => c + 1);
+    if (megaClick == true) {
+      setCookieToggle(true);
+
+      setNumCookies((c) => c + cursorPrice.value);
+    } else {
+      setNumCookies((c) => c + 1);
+    }
   };
 
   React.useEffect(() => {
@@ -36,13 +46,15 @@ const Game = () => {
 
   return (
     <Wrapper>
-      <GameArea>
+      <div id="Wrapper">
+        <Cursor />
+      </div>
+      <GameArea id="GameArea">
         <Indicator>
           <Total>{numCookies} cookies</Total>
-          <strong>{numOfGeneratedCookies}</strong> cookies
-          per second
+          <strong>{numOfGeneratedCookies}</strong> cookies per second
         </Indicator>
-        <Button onClick={incrementCookies}>
+        <Button id="CookieButton" onClick={incrementCookies}>
           <Cookie src={cookieSrc} />
         </Button>
       </GameArea>

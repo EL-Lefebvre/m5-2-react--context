@@ -5,20 +5,18 @@ import GlobalStyles from "./GlobalStyles";
 import { GameContext } from "./GameContext";
 import Home from "./Home";
 import Game from "./Game";
-import useTimeDifference from "./useTimeDifference";
+import useTimeDifference from "../hooks/useTimeDifference";
 
 function App(props) {
-  const {numCookies, setNumCookies, numOfGeneratedCookies} = useContext(GameContext);
-
+  const { numCookies, setNumCookies, numOfGeneratedCookies } = useContext(
+    GameContext
+  );
 
   useInterval(() => {
-   
     setNumCookies(numCookies + numOfGeneratedCookies);
   }, 1000);
-  
- useTimeDifference();
 
-
+  useTimeDifference();
 
   return (
     <>
